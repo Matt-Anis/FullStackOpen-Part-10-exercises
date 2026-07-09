@@ -1,13 +1,23 @@
-import { Pressable } from "react-native"
-import Text from "./Text"
+import { Link, useMatch } from 'react-router-native'
+import Text from './Text'
 
-const AppBarTab = ({ children, onPress }) => {
-  return (
-    <Pressable onPress={onPress}>
-      <Text  fontWeight="bold" fontSize="xl">
+const AppBarTab = ({ children, pageName }) => {
+  const match = useMatch(`/${pageName}`)
+
+  if (match) {
+    return (
+      <Text fontWeight="bold" fontSize="xl">
         {children}
       </Text>
-    </Pressable>
+    )
+  }
+
+  return (
+    <Link to={`/${pageName}`} underlayColor="transparent" replace>
+      <Text fontWeight="bold" fontSize="xl">
+        {children}
+      </Text>
+    </Link>
   )
 }
 
