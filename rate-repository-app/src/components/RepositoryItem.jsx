@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: 8,
     padding: 16,
-    rowGap: theme.spacing.large,
+    rowGap: theme.spacing.lg,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.06,
@@ -16,11 +16,11 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   container: {
-    rowGap: theme.spacing.medium,
+    rowGap: theme.spacing.md,
   },
   profile: {
     flexDirection: 'row',
-    columnGap: theme.spacing.medium,
+    columnGap: theme.spacing.md,
     flex: 1,
   },
   description: {
