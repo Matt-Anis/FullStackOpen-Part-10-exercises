@@ -11,10 +11,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     paddingHorizontal: 16,
-
-    // ...
   },
-  // ...
 });
 
 const AppBar = () => {

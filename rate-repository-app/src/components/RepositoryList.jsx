@@ -1,17 +1,15 @@
-import { FlatList, View, StyleSheet } from 'react-native';
-import RepositoryItem from './RepositoryItem';
-import theme from '../theme';
+import { FlatList, View, StyleSheet } from 'react-native'
+import RepositoryItem from './RepositoryItem'
 
 const styles = StyleSheet.create({
   separator: {
-    height: 1,
-    backgroundColor: '#e1e4e8',
-    marginVertical: theme.spacing.medium,  // 8
+    padding: 8,
+    rowGap: 8,
   },
   container: {
-    padding: 16
-  }
-});
+    padding: 16,
+  },
+})
 
 const repositories = [
   {
@@ -58,9 +56,9 @@ const repositories = [
     reviewCount: 0,
     ownerAvatarUrl: 'https://avatars3.githubusercontent.com/u/13142323?v=4',
   },
-];
+]
 
-const ItemSeparator = () => <View style={styles.separator} />;
+const ItemSeparator = () => <View style={styles.separator} />
 
 const RepositoryList = () => {
   return (
@@ -68,10 +66,10 @@ const RepositoryList = () => {
       data={repositories}
       ItemSeparatorComponent={ItemSeparator}
       renderItem={({ item }) => <RepositoryItem repo={item} />}
-      keyExtractor={item => item.id}
+      keyExtractor={(item) => item.id}
       style={styles.container}
     />
-  );
-};
+  )
+}
 
-export default RepositoryList;
+export default RepositoryList
