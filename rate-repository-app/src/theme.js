@@ -18,7 +18,7 @@ const theme = {
     primaryMuted: '#ddf4ff',
     // states
     success: '#1a7f37',
-    danger: '#cf222e',
+    danger: '#d73a4a',
     dangerHover: '#a40e26',
     warning: '#9a6700',
   },
