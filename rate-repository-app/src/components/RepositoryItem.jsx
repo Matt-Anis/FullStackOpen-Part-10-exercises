@@ -1,29 +1,43 @@
-import { Text, View } from 'react-native'
+import { View, StyleSheet } from 'react-native'
+import Text from './Text'
+import theme from '../theme'
 
-// {
-//     id: 'jaredpalmer.formik',
-//     fullName: 'jaredpalmer/formik',
-//     description: 'Build forms in React, without the tears',
-//     language: 'TypeScript',
-//     forksCount: 1589,
-//     stargazersCount: 21553,
-//     ratingAverage: 88,
-//     reviewCount: 4,
-//     ownerAvatarUrl: 'https://avatars2.githubusercontent.com/u/4060187?v=4',
-//   },
+const styles = StyleSheet.create({
+  container: {
+    rowGap: theme.spacing.small,
+  },
+})
 
-const RepositoryItem = ({  repo }) => {
+const RepositoryItem = ({ repo }) => {
   return (
-    <View>
-      <Text>{repo.id}</Text>
-      <Text>{ repo.fullName}</Text>
-      <Text>{ repo.description}</Text>
-      <Text>{ repo.language}</Text>
-      <Text>{ repo.forksCount}</Text>
-      <Text>{ repo.stargazersCount}</Text>
-      <Text>{ repo.ratingAverage}</Text>
-      <Text>{ repo.reviewCount}</Text>
-      <Text>{ repo.ownerAvatarUrl}</Text>
+    <View style={styles.container}>
+      <Text fontSize="lg" fontWeight="bold">
+        Full name: {repo.fullName}
+      </Text>
+
+      <Text color="textSecondary" fontSize="sm">
+        Description {repo.description}
+      </Text>
+
+      <Text color="primary" fontWeight="medium">
+        Language: {repo.language}
+      </Text>
+
+      <Text color="textSecondary" fontSize="sm">
+        ForksCount: {repo.forksCount}
+      </Text>
+
+      <Text color="textSecondary" fontSize="sm">
+        Stars: {repo.stargazersCount}
+      </Text>
+
+      <Text fontWeight="bold" fontSize="lg">
+        Rating: {repo.ratingAverage}
+      </Text>
+
+      <Text color="textSecondary" fontSize="sm">
+        Reviews: {repo.reviewCount}
+      </Text>
     </View>
   )
 }
