@@ -27,7 +27,7 @@ const LoginForm = () => {
     try {
       await signIn(data)
       navigate('/')
-    } catch (error) {
+    } catch {
       setError('root', { message: 'Invalid credentials' })
     }
   }
