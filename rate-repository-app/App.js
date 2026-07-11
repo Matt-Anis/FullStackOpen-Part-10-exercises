@@ -3,17 +3,22 @@ import { StatusBar } from 'expo-status-bar'
 import { ApolloProvider } from '@apollo/client/react'
 
 import Main from './src/components/Main'
-
 import createApolloClient from './src/utils/apolloClient'
 
-const apolloClient = createApolloClient()
+import authStorage from './src/utils/authStorage'
+import AuthStorageContext from './src/contexts/AuthStorageContext'
+
+const apolloClient = createApolloClient(authStorage)
+
 const App = () => {
   return (
     <>
       <StatusBar style="dark" />
       <NativeRouter>
         <ApolloProvider client={apolloClient}>
-          <Main />
+          <AuthStorageContext.Provider value={authStorage}>
+            <Main />
+          </AuthStorageContext.Provider>
         </ApolloProvider>
       </NativeRouter>
     </>
