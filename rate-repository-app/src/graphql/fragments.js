@@ -26,3 +26,10 @@ export const AUTH_PAYLOAD = gql`
     }
   }
 `
+
+export const USER_FIELDS = gql`
+  fragment UserFields on User {
+    id
+    username
+  }
+`

@@ -1,9 +1,8 @@
-import { Link, useMatch } from 'react-router-native'
-import Text from './Text'
+import { useMatch, Link } from 'react-router-native'
+import Text from '../Text'
 
-const AppBarTab = ({ children, pageName }) => {
+const AppBarLink = ({ children, pageName }) => {
   const match = useMatch(`/${pageName}`)
-
   if (match) {
     return (
       <Text fontWeight="bold" fontSize="xl">
@@ -11,7 +10,6 @@ const AppBarTab = ({ children, pageName }) => {
       </Text>
     )
   }
-
   return (
     <Link to={`/${pageName}`} underlayColor="transparent" replace>
       <Text fontWeight="bold" fontSize="xl">
@@ -21,4 +19,4 @@ const AppBarTab = ({ children, pageName }) => {
   )
 }
 
-export default AppBarTab
+export default AppBarLink
