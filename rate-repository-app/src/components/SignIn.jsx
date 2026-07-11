@@ -1,22 +1,51 @@
 import { Controller, useForm } from 'react-hook-form'
+import useSignIn from '../hooks/useSignIn'
+import { useNavigate } from 'react-router-native'
 import {
   View,
   TextInput,
   Text,
   TouchableOpacity,
   StyleSheet,
+  ActivityIndicator,
 } from 'react-native'
 import theme from '../theme'
 
 const LoginForm = () => {
+  const navigate = useNavigate()
+
   const {
     control,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm()
 
-  const onSubmit = (data) => {
-    console.log(data)
+  const [signIn, result] = useSignIn()
+
+  const onSubmit = async (data) => {
+    try {
+      await signIn(data)
+      navigate('/')
+    } catch (error) {
+      setError('root', { message: 'Invalid credentials' })
+    }
+  }
+
+  if (result.loading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color={theme.colors.primary} />
+        <Text
+          style={{
+            marginTop: theme.spacing.md,
+            color: theme.colors.textPrimary,
+          }}
+        >
+          Signing in...
+        </Text>
+      </View>
+    )
   }
 
   return (
@@ -78,6 +107,11 @@ const LoginForm = () => {
           <Text style={styles.buttonText}>Sign in</Text>
         </TouchableOpacity>
       </View>
+      {errors.root && (
+        <Text style={{ ...styles.errorText, padding: theme.spacing.md }}>
+          {errors.root.message}
+        </Text>
+      )}
     </View>
   )
 }
