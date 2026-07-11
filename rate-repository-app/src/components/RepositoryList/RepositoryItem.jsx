@@ -1,6 +1,6 @@
 import { View, StyleSheet, Image } from 'react-native'
-import Text from './Text'
-import theme from '../theme'
+import Text from '../Text'
+import theme from '../../theme'
 
 const styles = StyleSheet.create({
   card: {
@@ -111,7 +111,7 @@ const RepositoryItemStats = ({ repo }) => (
 )
 
 const RepositoryItem = ({ repo }) => (
-  <View style={styles.card}>
+  <View style={styles.card} testID="repositoryItem">
     <RepositoryItemHeader repo={repo} />
     <RepositoryItemStats repo={repo} />
   </View>
