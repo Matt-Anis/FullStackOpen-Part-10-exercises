@@ -1,5 +1,9 @@
 import { gql } from '@apollo/client'
-import { REPOSITORY_FIELDS, USER_FIELDS } from './fragments'
+import {
+  REPOSITORY_FIELDS,
+  USER_FIELDS,
+  REPOSITORY_FIELDS_WITH_REVIEWS,
+} from './fragments'
 
 export const GET_REPOSITORIES = gql`
   ${REPOSITORY_FIELDS}
@@ -15,11 +19,10 @@ export const GET_REPOSITORIES = gql`
 `
 
 export const GET_REPOSITORY = gql`
-  ${REPOSITORY_FIELDS}
+  ${REPOSITORY_FIELDS_WITH_REVIEWS}
   query Repository($id: ID!) {
     repository(id: $id) {
-      ...RepositoryFields
-      url
+      ...RepositoryFieldsWithReviews
     }
   }
 `

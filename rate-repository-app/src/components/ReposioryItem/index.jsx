@@ -7,5 +7,5 @@ const RepositoryItem = ({ repo }) => (
   </Link>
 )
 
-export { default as RepositoryItemDetail } from './RepositoryItemDetail'
+export { default as RepositoryItemScreen } from './RepositoryItemScreen'
 export default RepositoryItem

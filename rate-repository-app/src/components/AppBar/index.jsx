@@ -6,10 +6,7 @@ import useCurrentUser from '../../hooks/useCurrentUser'
 import useSignOut from '../../hooks/useSignOut'
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: Constants.statusBarHeight,
-    height: 56 + Constants.statusBarHeight,
-  },
+  container: { height: 56 },
   scrollView: {
     flexDirection: 'row',
     gap: 16,

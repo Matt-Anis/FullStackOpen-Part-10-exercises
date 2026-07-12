@@ -1,8 +1,8 @@
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { Route, Routes, Navigate } from 'react-router-native'
-
 import RepositoryList from './RepositoryList'
-import { RepositoryItemDetail } from './ReposioryItem'
+import { RepositoryItemScreen } from './ReposioryItem'
 import AppBar from './AppBar'
 import SignIn from './SignIn'
 
@@ -14,15 +14,15 @@ const styles = StyleSheet.create({
 
 const Main = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <AppBar />
       <Routes>
         <Route path="/" element={<RepositoryList />} />
         <Route path="/SignIn" element={<SignIn />} />
-        <Route path="/repository/:id" element={<RepositoryItemDetail />} />
+        <Route path="/repository/:id" element={<RepositoryItemScreen />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </View>
+    </SafeAreaView>
   )
 }
 

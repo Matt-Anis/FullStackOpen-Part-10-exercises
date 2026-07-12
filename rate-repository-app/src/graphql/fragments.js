@@ -17,6 +17,28 @@ export const REPOSITORY_FIELDS = gql`
   }
 `
 
+export const REPOSITORY_FIELDS_WITH_REVIEWS = gql`
+  ${REPOSITORY_FIELDS}
+  fragment RepositoryFieldsWithReviews on Repository {
+    ...RepositoryFields
+    url
+    reviews {
+      edges {
+        node {
+          id
+          text
+          rating
+          createdAt
+          user {
+            id
+            username
+          }
+        }
+      }
+    }
+  }
+`
+
 export const AUTH_PAYLOAD = gql`
   fragment AuthenticateFields on AuthenticatePayload {
     accessToken

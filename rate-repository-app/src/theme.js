@@ -15,9 +15,9 @@ const theme = {
     border: '#d0d7de',
     borderMuted: '#eaeef2',
     // brand
-    primary: '#0969da',
-    primaryHover: '#0550ae',
-    primaryMuted: '#ddf4ff',
+    primary: '#24292f',
+    primaryHover: '#444d56',
+    primaryMuted: '#f6f8fa',
     // states
     success: '#1a7f37',
     danger: '#d73a4a',
@@ -31,8 +31,8 @@ const theme = {
       color: '#24292f',
     },
     primary: {
-      backgroundColor: '#000000',
-      borderColor: '#0969da',
+      backgroundColor: '#24292f',
+      borderColor: '#24292f',
       color: '#ffffff',
     },
     danger: {
@@ -57,8 +57,8 @@ const theme = {
       placeholderColor: '#8c959f',
     },
     focused: {
-      borderColor: '#0969da',
-      shadowColor: '#0969da',
+      borderColor: '#57606a',
+      shadowColor: '#57606a',
       shadowOpacity: 0.3,
       shadowRadius: 3,
     },
@@ -89,7 +89,6 @@ const theme = {
     ios: 'Arial',
     default: 'System',
   }),
-
   fontWeights: {
     normal: '400',
     medium: '500',
