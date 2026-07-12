@@ -14,6 +14,16 @@ export const GET_REPOSITORIES = gql`
   }
 `
 
+export const GET_REPOSITORY = gql`
+  ${REPOSITORY_FIELDS}
+  query Repository($id: ID!) {
+    repository(id: $id) {
+      ...RepositoryFields
+      url
+    }
+  }
+`
+
 export const ME = gql`
   ${USER_FIELDS}
   query {

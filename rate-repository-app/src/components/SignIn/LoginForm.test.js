@@ -1,9 +1,4 @@
-import {
-  render,
-  screen,
-  fireEvent,
-  waitFor,
-} from '@testing-library/react-native'
+import { render, fireEvent, waitFor } from '@testing-library/react-native'
 import LoginForm from './LoginForm'
 
 describe('SignIn', () => {

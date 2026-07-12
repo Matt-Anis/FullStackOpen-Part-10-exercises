@@ -16,6 +16,7 @@ export const REPOSITORY_FIELDS = gql`
     ownerAvatarUrl
   }
 `
+
 export const AUTH_PAYLOAD = gql`
   fragment AuthenticateFields on AuthenticatePayload {
     accessToken

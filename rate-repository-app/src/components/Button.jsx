@@ -4,62 +4,26 @@ import theme from '../theme'
 
 const styles = StyleSheet.create({
   button: {
-    paddingHorizontal: 16,
-    paddingVertical: 6,
-    borderRadius: 6,
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  default: {
-    backgroundColor: theme.button.default.backgroundColor,
-    borderColor: theme.button.default.borderColor,
-  },
-  primary: {
     backgroundColor: theme.button.primary.backgroundColor,
-    borderColor: theme.button.primary.borderColor,
+    borderRadius: theme.radii.md,
+    paddingVertical: theme.spacing.md,
+    alignItems: 'center',
+    marginTop: theme.spacing.sm,
   },
-  danger: {
-    backgroundColor: theme.button.danger.backgroundColor,
-    borderColor: theme.button.danger.borderColor,
-  },
-  disabled: {
-    backgroundColor: theme.button.disabled.backgroundColor,
-    borderColor: theme.button.disabled.borderColor,
+  buttonText: {
+    color: theme.button.primary.color,
+    fontSize: theme.fontSizes.md,
+    fontWeight: theme.fontWeights.semibold,
   },
 })
 
-const textColorMap = {
-  default: 'textPrimary',
-  primary: 'textOnPrimary',
-  danger: 'textOnPrimary',
-  disabled: 'textDisabled',
-}
-
-const Button = ({
-  children,
-  onPress,
-  variant = 'default',
-  disabled = false,
-  style,
-}) => {
-  const activeVariant = disabled ? 'disabled' : variant
-
-  return (
-    <Pressable
-      onPress={disabled ? null : onPress}
-      style={({ pressed }) => [
-        styles.button,
-        styles[activeVariant],
-        pressed && !disabled && { opacity: 0.75 },
-        style,
-      ]}
-    >
-      <Text fontWeight="bold" fontSize="m" color={textColorMap[activeVariant]}>
-        {children}
-      </Text>
-    </Pressable>
-  )
-}
+const Button = ({ children, onPress }) => (
+  <Pressable
+    onPress={onPress}
+    style={({ pressed }) => [styles.button, pressed && { opacity: 0.75 }]}
+  >
+    <Text style={styles.buttonText}>{children}</Text>
+  </Pressable>
+)
 
 export default Button
