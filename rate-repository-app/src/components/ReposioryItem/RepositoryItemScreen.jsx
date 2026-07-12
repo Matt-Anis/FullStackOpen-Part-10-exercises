@@ -6,7 +6,7 @@ import { Linking } from 'react-native'
 
 const RepositoryItemDetail = () => {
   const { id } = useParams()
-  const { data, loading, error } = useQuery(GET_REPOSITORY, {
+  const { data, loading } = useQuery(GET_REPOSITORY, {
     variables: { id },
     fetchPolicy: 'cache-and-network',
   })

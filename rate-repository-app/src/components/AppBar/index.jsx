@@ -1,5 +1,4 @@
 import { View, ScrollView, StyleSheet } from 'react-native'
-import Constants from 'expo-constants'
 import AppBarTab from './AppBarTab'
 import AppBarLink from './AppBarLink'
 import useCurrentUser from '../../hooks/useCurrentUser'
@@ -27,8 +26,12 @@ const AppBar = () => {
         showsHorizontalScrollIndicator={false}
       >
         <AppBarLink pageName="">Repositories</AppBarLink>
+
         {currentUser ? (
-          <AppBarTab onPress={signOut}>Sign out</AppBarTab>
+          <>
+            <AppBarLink pageName="review">Create a review</AppBarLink>
+            <AppBarTab onPress={signOut}>Sign out</AppBarTab>
+          </>
         ) : (
           <AppBarLink pageName="signIn">Sign in</AppBarLink>
         )}
