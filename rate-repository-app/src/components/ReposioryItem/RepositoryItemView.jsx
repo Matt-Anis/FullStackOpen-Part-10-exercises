@@ -1,5 +1,5 @@
 import RepositoryItemCard from './RepositoryItemCard'
-import RepositoryReviewCard from './RepositoryReviewCard'
+import RepositoryReviewCard from '../ReviewCard'
 import Button from '../Button'
 import Text from '../Text'
 import { FlatList, View, StyleSheet } from 'react-native'

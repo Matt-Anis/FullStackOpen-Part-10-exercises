@@ -17,22 +17,29 @@ export const REPOSITORY_FIELDS = gql`
   }
 `
 
+export const REVIEW_FIELDS = gql`
+  fragment ReviewFields on Review {
+    id
+    text
+    rating
+    createdAt
+    user {
+      id
+      username
+    }
+  }
+`
+
 export const REPOSITORY_FIELDS_WITH_REVIEWS = gql`
   ${REPOSITORY_FIELDS}
+  ${REVIEW_FIELDS}
   fragment RepositoryFieldsWithReviews on Repository {
     ...RepositoryFields
     url
     reviews {
       edges {
         node {
-          id
-          text
-          rating
-          createdAt
-          user {
-            id
-            username
-          }
+          ...ReviewFields
         }
       }
     }

@@ -7,6 +7,7 @@ import AppBar from './AppBar'
 import SignIn from './SignIn'
 import ReviewFormContainer from './ReviewForm'
 import SignUpFormContainer from './SignUpForm'
+import MyReviews from './MyReviews'
 
 const styles = StyleSheet.create({
   container: {
@@ -24,6 +25,7 @@ const Main = () => {
         <Route path="/review" element={<ReviewFormContainer />} />
         <Route path="/repository/:id" element={<RepositoryItemScreen />} />
         <Route path="/SignUp" element={<SignUpFormContainer />} />
+        <Route path="/myreviews" element={<MyReviews />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </SafeAreaView>

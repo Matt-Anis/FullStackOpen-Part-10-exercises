@@ -3,6 +3,7 @@ import {
   REPOSITORY_FIELDS,
   USER_FIELDS,
   REPOSITORY_FIELDS_WITH_REVIEWS,
+  REVIEW_FIELDS,
 } from './fragments'
 
 export const GET_REPOSITORIES = gql`
@@ -40,6 +41,21 @@ export const ME = gql`
   query {
     me {
       ...UserFields
+    }
+  }
+`
+
+export const MY_REVIEWS = gql`
+  ${REVIEW_FIELDS}
+  query {
+    me {
+      reviews {
+        edges {
+          node {
+            ...ReviewFields
+          }
+        }
+      }
     }
   }
 `

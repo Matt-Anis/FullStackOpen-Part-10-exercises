@@ -1,8 +1,14 @@
 import { useQuery } from '@apollo/client/react'
-import { ME } from '../graphql/queries'
+import { ME, MY_REVIEWS } from '../graphql/queries'
 
-const useCurrentUser = () => {
-  const { data, loading, error } = useQuery(ME)
+const useCurrentUser = ({ includeReviews } = {}) => {
+  console.log(
+    'DEBUG: useCurrentUser called with includeReviews:',
+    includeReviews,
+  )
+  const { data, loading, error } = useQuery(includeReviews ? MY_REVIEWS : ME, {
+    fetchPolicy: 'cache-and-network',
+  })
   return { currentUser: data?.me, loading, error }
 }
 

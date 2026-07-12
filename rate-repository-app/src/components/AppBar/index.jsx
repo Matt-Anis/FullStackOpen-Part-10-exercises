@@ -30,6 +30,7 @@ const AppBar = () => {
         {currentUser ? (
           <>
             <AppBarLink pageName="review">Create a review</AppBarLink>
+            <AppBarLink pageName="myreviews">My reviews</AppBarLink>
             <AppBarTab onPress={signOut}>Sign out</AppBarTab>
           </>
         ) : (
