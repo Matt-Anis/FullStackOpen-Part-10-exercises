@@ -1,4 +1,5 @@
 import { Platform } from 'react-native'
+import { MD3LightTheme } from 'react-native-paper'
 
 const theme = {
   colors: {
@@ -109,6 +110,31 @@ const theme = {
     md: 6,
     lg: 8,
     full: 9999,
+  },
+}
+export const paperTheme = {
+  ...MD3LightTheme,
+  fonts: {
+    ...MD3LightTheme.fonts,
+    bodyLarge: {
+      ...MD3LightTheme.fonts.bodyLarge,
+      fontFamily: Platform.select({
+        android: 'Roboto',
+        ios: 'Arial',
+        default: 'System',
+      }),
+    },
+  },
+  colors: {
+    ...MD3LightTheme.colors,
+    primary: theme.colors.primary,
+    background: theme.colors.bgPrimary,
+    surface: theme.colors.bgSecondary,
+    onPrimary: theme.colors.textOnPrimary,
+    onBackground: theme.colors.textPrimary,
+    onSurface: theme.colors.textPrimary,
+    outline: theme.colors.border,
+    error: theme.colors.danger,
   },
 }
 

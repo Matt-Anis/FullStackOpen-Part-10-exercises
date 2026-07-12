@@ -2,6 +2,7 @@ import { FlatList, View, StyleSheet } from 'react-native'
 
 import RepositoryItem from '../ReposioryItem'
 import SortSelect from './SortSelect'
+import FilterSearchBar from './FilterSearchBar'
 
 const styles = StyleSheet.create({
   separator: {
@@ -14,13 +15,23 @@ const styles = StyleSheet.create({
 })
 const ItemSeparator = () => <View style={styles.separator} />
 
-const RepositoryListContainer = ({ repositories, filter, setFilter }) => {
+const RepositoryListContainer = ({
+  repositories,
+  filter,
+  setFilter,
+  setSearchQuery,
+  searchQuery,
+}) => {
   const repositoryNodes = repositories
     ? repositories.edges.map((edge) => edge.node)
     : []
 
   return (
     <>
+      <FilterSearchBar
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
       <SortSelect filter={filter} setFilter={setFilter} />
       <FlatList
         data={repositoryNodes}

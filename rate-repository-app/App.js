@@ -8,6 +8,9 @@ import createApolloClient from './src/utils/apolloClient'
 import authStorage from './src/utils/authStorage'
 import AuthStorageContext from './src/contexts/AuthStorageContext'
 
+import { PaperProvider } from 'react-native-paper'
+import { paperTheme } from './src/theme'
+
 const apolloClient = createApolloClient(authStorage)
 
 const App = () => {
@@ -17,7 +20,9 @@ const App = () => {
       <NativeRouter>
         <ApolloProvider client={apolloClient}>
           <AuthStorageContext.Provider value={authStorage}>
-            <Main />
+            <PaperProvider theme={paperTheme}>
+              <Main />
+            </PaperProvider>
           </AuthStorageContext.Provider>
         </ApolloProvider>
       </NativeRouter>

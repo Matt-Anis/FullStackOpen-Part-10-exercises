@@ -1,10 +1,13 @@
 import { useRepositories } from '../../hooks/useRepositories'
 import { useState } from 'react'
+import { useDebounce } from 'use-debounce'
 
 import RepositoryListContainer from './RepositoryListContainer'
 
 const RepositoryList = () => {
   const [filter, setFilter] = useState('LatestCreated')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [debouncedSearchQuery] = useDebounce(searchQuery, 500)
 
   const orderBy =
     filter === 'HighestRated' || filter === 'LowestRated'
@@ -12,13 +15,19 @@ const RepositoryList = () => {
       : 'CREATED_AT'
   const orderDirection = filter === 'LowestRated' ? 'ASC' : 'DESC'
 
-  const { repositories } = useRepositories({ orderBy, orderDirection })
+  const { repositories } = useRepositories({
+    orderBy,
+    orderDirection,
+    searchKeyword: debouncedSearchQuery,
+  })
 
   return (
     <RepositoryListContainer
       repositories={repositories}
       filter={filter}
       setFilter={setFilter}
+      setSearchQuery={setSearchQuery}
+      searchQuery={searchQuery}
     />
   )
 }
