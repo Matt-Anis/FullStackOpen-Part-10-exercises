@@ -9,11 +9,12 @@ import {
 } from 'react-native'
 import theme from '../../theme'
 
-const ReviewForm = ({ onSubmit, result, error }) => {
+const SignUpForm = ({ onSubmit, result, error }) => {
   const {
     control,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm()
 
   if (result?.loading) {
@@ -26,7 +27,7 @@ const ReviewForm = ({ onSubmit, result, error }) => {
             color: theme.colors.textPrimary,
           }}
         >
-          Submitting review...
+          Signing up...
         </Text>
       </View>
     )
@@ -34,117 +35,116 @@ const ReviewForm = ({ onSubmit, result, error }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Create a Review</Text>
+      <Text style={styles.title}>Sign up</Text>
 
       <View style={styles.form}>
-        {/* ownerName */}
+        {/* username */}
         <View style={styles.fieldGroup}>
           <Controller
             control={control}
-            name="ownerName"
-            rules={{ required: 'Owner name is required' }}
+            name="username"
+            rules={{
+              required: 'Username is required',
+              minLength: {
+                value: 3,
+                message: 'Username must be at least 3 characters long',
+              },
+              maxLength: {
+                value: 30,
+                message: 'Username must be at most 30 characters long',
+              },
+            }}
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
-                style={[styles.input, errors.ownerName && styles.inputError]}
+                style={[styles.input, errors.username && styles.inputError]}
                 onChangeText={onChange}
                 onBlur={onBlur}
                 value={value}
-                placeholder="Repository owner name"
+                placeholder="Username"
                 placeholderTextColor={theme.input.default.placeholderColor}
                 autoCapitalize="none"
                 keyboardType="default"
               />
             )}
           />
-          {errors.ownerName && (
-            <Text style={styles.errorText}>{errors.ownerName.message}</Text>
+          {errors.username && (
+            <Text style={styles.errorText}>{errors.username.message}</Text>
           )}
         </View>
 
-        {/* repositoryName */}
+        {/* password */}
         <View style={styles.fieldGroup}>
           <Controller
             control={control}
-            name="repositoryName"
-            rules={{ required: 'Repository name is required' }}
+            name="password"
+            rules={{
+              required: 'Password is required',
+              minLength: {
+                value: 5,
+                message: 'Password must be at least 5 characters long',
+              },
+              maxLength: {
+                value: 50,
+                message: 'Password must be at most 50 characters long',
+              },
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                style={[styles.input, errors.password && styles.inputError]}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                value={value}
+                placeholder="Password"
+                placeholderTextColor={theme.input.default.placeholderColor}
+                secureTextEntry
+              />
+            )}
+          />
+          {errors.password && (
+            <Text style={styles.errorText}>{errors.password.message}</Text>
+          )}
+        </View>
+
+        {/* confirmPassword */}
+        <View style={styles.fieldGroup}>
+          <Controller
+            control={control}
+            name="confirmPassword"
+            rules={{
+              required: 'Confirm Password is required',
+              validate: (value) =>
+                value === getValues('password') || 'Passwords do not match',
+            }}
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 style={[
                   styles.input,
-                  errors.repositoryName && styles.inputError,
+                  errors.confirmPassword && styles.inputError,
                 ]}
                 onChangeText={onChange}
                 onBlur={onBlur}
                 value={value}
-                placeholder="Repository name"
+                placeholder="Confirm Password"
                 placeholderTextColor={theme.input.default.placeholderColor}
-                autoCapitalize="none"
-                keyboardType="default"
+                secureTextEntry
               />
             )}
           />
-          {errors.repositoryName && (
+          {errors.confirmPassword && (
             <Text style={styles.errorText}>
-              {errors.repositoryName.message}
+              {errors.confirmPassword.message}
             </Text>
           )}
-        </View>
-
-        {/* rating */}
-        <View style={styles.fieldGroup}>
-          <Controller
-            control={control}
-            name="rating"
-            rules={{
-              required: 'Rating is required',
-              min: { value: 0, message: 'Rating must be at least 0' },
-              max: { value: 100, message: 'Rating cannot exceed 100' },
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <TextInput
-                style={[styles.input, errors.rating && styles.inputError]}
-                onChangeText={(text) => onChange(Number(text))}
-                onBlur={onBlur}
-                value={value ? String(value) : ''}
-                placeholder="Rating (0-100)"
-                placeholderTextColor={theme.input.default.placeholderColor}
-                keyboardType="numeric"
-              />
-            )}
-          />
-          {errors.rating && (
-            <Text style={styles.errorText}>{errors.rating.message}</Text>
-          )}
-        </View>
-
-        {/* text */}
-        <View style={styles.fieldGroup}>
-          <Controller
-            control={control}
-            name="text"
-            render={({ field: { onChange, onBlur, value } }) => (
-              <TextInput
-                style={[styles.input, styles.textArea]}
-                onChangeText={onChange}
-                onBlur={onBlur}
-                value={value}
-                placeholder="Review text (optional)"
-                placeholderTextColor={theme.input.default.placeholderColor}
-                multiline
-              />
-            )}
-          />
         </View>
 
         <TouchableOpacity
           style={styles.submitButton}
           onPress={handleSubmit(onSubmit)}
         >
-          <Text style={styles.submitButtonText}>Submit Review</Text>
+          <Text style={styles.submitButtonText}>Sign Up</Text>
         </TouchableOpacity>
-
-        {error && <Text style={styles.errorText}>{error}</Text>}
       </View>
+      {error && <Text style={styles.errorText}>{error}</Text>}
     </View>
   )
 }
@@ -184,10 +184,6 @@ const styles = StyleSheet.create({
   inputError: {
     borderColor: theme.input.error.borderColor,
   },
-  textArea: {
-    minHeight: 80,
-    textAlignVertical: 'top',
-  },
   errorText: {
     fontSize: theme.fontSizes.sm,
     color: theme.colors.danger,
@@ -206,4 +202,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default ReviewForm
+export default SignUpForm
