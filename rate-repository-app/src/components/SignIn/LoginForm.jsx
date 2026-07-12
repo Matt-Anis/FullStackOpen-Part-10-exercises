@@ -1,6 +1,4 @@
 import { Controller, useForm } from 'react-hook-form'
-import useSignIn from '../hooks/useSignIn'
-import { useNavigate } from 'react-router-native'
 import {
   View,
   TextInput,
@@ -9,30 +7,16 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native'
-import theme from '../theme'
+import theme from '../../theme'
 
-const LoginForm = () => {
-  const navigate = useNavigate()
-
+const LoginForm = ({ onSubmit, result }) => {
   const {
     control,
     handleSubmit,
     formState: { errors },
-    setError,
   } = useForm()
 
-  const [signIn, result] = useSignIn()
-
-  const onSubmit = async (data) => {
-    try {
-      await signIn(data)
-      navigate('/')
-    } catch {
-      setError('root', { message: 'Invalid credentials' })
-    }
-  }
-
-  if (result.loading) {
+  if (result?.loading) {
     return (
       <View style={styles.container}>
         <ActivityIndicator size="large" color={theme.colors.primary} />
@@ -103,6 +87,7 @@ const LoginForm = () => {
         <TouchableOpacity
           style={styles.button}
           onPress={handleSubmit(onSubmit)}
+          accessibilityRole="button"
         >
           <Text style={styles.buttonText}>Sign in</Text>
         </TouchableOpacity>
@@ -169,6 +154,4 @@ const styles = StyleSheet.create({
   },
 })
 
-const SignIn = () => <LoginForm />
-
-export default SignIn
+export default LoginForm
