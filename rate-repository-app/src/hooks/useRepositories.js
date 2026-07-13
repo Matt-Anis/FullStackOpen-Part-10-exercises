@@ -6,7 +6,7 @@ export const useRepositories = ({
   orderDirection,
   searchKeyword,
 } = {}) => {
-  const { data, loading, refetch } = useQuery(GET_REPOSITORIES, {
+  const { data, loading, refetch, fetchMore } = useQuery(GET_REPOSITORIES, {
     variables: {
       orderBy: orderBy || 'CREATED_AT',
       orderDirection: orderDirection || 'DESC',
@@ -14,7 +14,30 @@ export const useRepositories = ({
     },
     fetchPolicy: 'cache-and-network',
   })
-  return { repositories: data?.repositories, loading, refetch }
+
+  const handleFetchMore = () => {
+    const canFetchMore = !loading && data?.repositories.pageInfo.hasNextPage
+
+    if (!canFetchMore) {
+      return
+    }
+
+    fetchMore({
+      variables: {
+        after: data.repositories.pageInfo.endCursor,
+        orderBy: orderBy || 'CREATED_AT',
+        orderDirection: orderDirection || 'DESC',
+        searchKeyword: searchKeyword || '',
+      },
+    })
+  }
+
+  return {
+    repositories: data?.repositories,
+    loading,
+    refetch,
+    fetchMore: handleFetchMore,
+  }
 }
 
 export const useRepository = (id) => {

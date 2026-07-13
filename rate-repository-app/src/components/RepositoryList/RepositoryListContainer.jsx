@@ -17,6 +17,7 @@ const ItemSeparator = () => <View style={styles.separator} />
 
 const RepositoryListContainer = ({
   repositories,
+  onEndReached,
   filter,
   setFilter,
   setSearchQuery,
@@ -39,6 +40,8 @@ const RepositoryListContainer = ({
         renderItem={({ item }) => <RepositoryItem repo={item} />}
         keyExtractor={(item) => item.id}
         style={styles.container}
+        onEndReached={onEndReached}
+        onEndReachedThreshold={0.5}
       />
     </>
   )

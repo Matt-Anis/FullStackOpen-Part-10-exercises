@@ -15,10 +15,11 @@ const RepositoryList = () => {
       : 'CREATED_AT'
   const orderDirection = filter === 'LowestRated' ? 'ASC' : 'DESC'
 
-  const { repositories } = useRepositories({
+  const { repositories, fetchMore } = useRepositories({
     orderBy,
     orderDirection,
     searchKeyword: debouncedSearchQuery,
+    first: 2,
   })
 
   return (
@@ -28,6 +29,7 @@ const RepositoryList = () => {
       setFilter={setFilter}
       setSearchQuery={setSearchQuery}
       searchQuery={searchQuery}
+      onEndReached={fetchMore}
     />
   )
 }
