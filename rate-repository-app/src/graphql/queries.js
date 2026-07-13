@@ -38,7 +38,7 @@ export const GET_REPOSITORY = gql`
 
 export const ME = gql`
   ${USER_FIELDS}
-  query {
+  query Me {
     me {
       ...UserFields
     }
@@ -47,7 +47,7 @@ export const ME = gql`
 
 export const MY_REVIEWS = gql`
   ${REVIEW_FIELDS}
-  query {
+  query MyReviews {
     me {
       reviews {
         edges {

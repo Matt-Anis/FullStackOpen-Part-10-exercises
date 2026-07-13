@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Pressable } from 'react-native'
 import Text from './Text'
 import theme from '../theme'
 
@@ -11,7 +11,7 @@ const formatDate = (dateString) => {
   })
 }
 
-const RepositoryReviewCard = ({ review }) => {
+const RepositoryReviewCard = ({ review, children }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -26,6 +26,7 @@ const RepositoryReviewCard = ({ review }) => {
       <View style={styles.body}>
         <Text style={styles.reviewText}>{review.text}</Text>
       </View>
+      <View style={styles.controlChildren}>{children}</View>
     </View>
   )
 }
@@ -78,6 +79,13 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSizes.md,
     color: theme.colors.textSecondary,
     lineHeight: 20,
+  },
+  controlChildren: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-around',
+    marginTop: theme.spacing.lg,
+    gap: theme.spacing.md,
   },
 })
 

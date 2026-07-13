@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import theme from '../../theme'
 
-const LoginForm = ({ onSubmit, result }) => {
+const LoginForm = ({ onSubmit, result, error }) => {
   const {
     control,
     handleSubmit,
@@ -95,6 +95,11 @@ const LoginForm = ({ onSubmit, result }) => {
       {errors.root && (
         <Text style={{ ...styles.errorText, padding: theme.spacing.md }}>
           {errors.root.message}
+        </Text>
+      )}
+      {error && (
+        <Text style={{ ...styles.errorText, padding: theme.spacing.md }}>
+          {error}
         </Text>
       )}
     </View>
